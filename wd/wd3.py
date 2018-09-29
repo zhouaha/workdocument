@@ -76,7 +76,7 @@ def select_todo():
                 data.append(rows)
         for i, rows in enumerate(line):
             if i in range((s - 1) * 6, s * 6):
-                print(rows)
+                print(rows[:-1])
         f.close()
 
 
@@ -114,10 +114,12 @@ def show_todo():
                if i[2] == 'priority:high\n':
                    data1.append(i)
            for i in data1:
+               #print(i)
                for j in i:
+                   #print(j)
                    if f == '\n':
                        continue
-                   print(j)
+                   print(j[:-1])
        elif s1 == 2:
            for i, rows in enumerate(line):
                if rows is '\n':
@@ -126,17 +128,15 @@ def show_todo():
                data.append(line[6 * i:6 * i + 6])
            l = range(1,int(len(line) / 6))
            for i in l:
-               print(data[i-1][3],data[i][3])
                if data[i-1][3] > data[i][3]:
                    data[i-1],data[i] = data[i],data[i-1]
-               print(data)
            for i in data:
                for j in i:
                    if f == '\n':
                        continue
-                   print(j)
+                   print(j[:-1])
 
-   if s == 2:
+   elif s == 2:
        print('**************************')
        print('选择排序方式                ')
        print('1:优先级                   ')
@@ -150,19 +150,19 @@ def show_todo():
            for i in range(int(len(line) / 6)):
                data.append(line[6 * i:6 * i + 6])
            for i in data:
-               if i[2] == 'priority:low\n':
+               if i[2] == 'priority:high\n':
                    data1.append(i)
            for i in data:
                if i[2] == 'priority:middle\n':
                    data1.append(i)
            for i in data:
-               if i[2] == 'priority:high\n':
+               if i[2] == 'priority:low\n':
                    data1.append(i)
            for i in data1:
                for j in i:
                    if f == '\n':
                        continue
-                   print(j)
+                   print(j[:-1])
        elif s1 == 2:
            for i, rows in enumerate(line):
                if rows is '\n':
@@ -171,15 +171,15 @@ def show_todo():
                data.append(line[6 * i:6 * i + 6])
            l = range(1,int(len(line) / 6))
            for i in l:
-               print(data[i-1][3],data[i][3])
-               if data[i-1][3] < data[i][3]:
+               if data[i-1][3] > data[i][3]:
                    data[i-1],data[i] = data[i],data[i-1]
-               print(data)
-           for i in data:
+           for i in reversed(data):
+               data1.append(i)
+           for i in data1:
                for j in i:
                    if f == '\n':
                        continue
-                   print(j)
+                   print(j[:-1])
 
 if __name__ == '__main__':
     while True:
